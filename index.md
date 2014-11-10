@@ -78,7 +78,7 @@ dt <- dTable(
   iris,
   sPaginationType= "full_numbers"
 )
-dt$save('datatable.html')
+dt$save('datatable.html',cdn=TRUE)
 ```
 <iframe src="datatable.html"></iframe>
 
@@ -105,7 +105,7 @@ d1$legend(
   height = 20,
   horizontalAlign = "right"
 )
-d1$save('dimple.html')
+d1$save('dimple.html',cdn=TRUE)
 ```
 
 ---
@@ -127,12 +127,12 @@ h1$show("inline")
 ```
 
 
-<div id = 'chart112445eb96b' class = 'rChart highcharts'></div>
+<div id = 'chart11243c3f530d' class = 'rChart highcharts'></div>
 <script type='text/javascript'>
     (function($){
         $(function () {
             var chart = new Highcharts.Chart({
- "dom": "chart112445eb96b",
+ "dom": "chart11243c3f530d",
 "width":            800,
 "height":            400,
 "credits": {
@@ -1048,9 +1048,9 @@ h1$show("inline")
 },
 "chart": {
  "zoomType": "xy",
-"renderTo": "chart112445eb96b" 
+"renderTo": "chart11243c3f530d" 
 },
-"id": "chart112445eb96b" 
+"id": "chart11243c3f530d" 
 });
         });
     })(jQuery);
@@ -1068,7 +1068,7 @@ m1 <- mPlot(x = "date", y = list("psavert", "uempmed"), data = dat, type = 'Line
 m1$set(xLabelFormat = "#! function (x) { 
   return x.toString(); } 
 !#")
-m1$save("morris.html")
+m1$save("morris.html",cdn=TRUE)
 ```
 <iframe src="morris.html"></iframe>
 
@@ -1080,7 +1080,7 @@ m1$save("morris.html")
 hair_eye = as.data.frame(HairEyeColor)
 n1 <- nPlot(Freq ~ Hair, group = 'Eye', data = subset(hair_eye, Sex == "Female"), type = 'multiBarChart')
 n1$chart(color = c('brown', 'blue', '#594c26', 'green'))
-n1$save('nvd3.html')
+n1$save('nvd3.html',cdn=TRUE)
 ```
 <iframe src="nvd3.html"></iframe>
 
@@ -1091,7 +1091,7 @@ n1$save('nvd3.html')
 ```r
 names(iris) = gsub("\\.", "", names(iris))
 p1 <- rPlot(SepalLength ~ SepalWidth | Species, data = iris, color = 'Species', type = 'point')
-p1$save("polychart.html")
+p1$save("polychart.html",cdn=TRUE)
 ```
 <iframe src="polychart.html"></iframe>
 
@@ -1112,7 +1112,7 @@ r1$layer(expenditure ~ year, group = 'category', data = uspexp, type = 'area')
 r1$yAxis(orientation = 'left')
 r1$xAxis(type = 'Time')
 r1$set(width = 700, height = 400)
-r1$save("rickshaw.html")
+r1$save("rickshaw.html",cdn=TRUE)
 ```
 
 ---
@@ -1127,7 +1127,7 @@ r1$save("rickshaw.html")
 
 ```r
 u1=uPlot(x = 'Sex', y = 'Freq', data = as.data.frame(HairEyeColor), group = 'Hair', type = 'Bar')
-u1$save("uv.html")
+u1$save("uv.html",cdn=TRUE)
 ```
 <iframe src="uv.html"></iframe>
 

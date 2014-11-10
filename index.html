@@ -198,7 +198,7 @@
   iris,
   sPaginationType= &quot;full_numbers&quot;
 )
-dt$save(&#39;datatable.html&#39;)
+dt$save(&#39;datatable.html&#39;,cdn=TRUE)
 </code></pre>
 
 <iframe src="datatable.html"></iframe>
@@ -230,7 +230,7 @@ d1$legend(
   height = 20,
   horizontalAlign = &quot;right&quot;
 )
-d1$save(&#39;dimple.html&#39;)
+d1$save(&#39;dimple.html&#39;,cdn=TRUE)
 </code></pre>
 
   </article>
@@ -259,13 +259,13 @@ h1$exporting(enabled = T)
 h1$show(&quot;inline&quot;)
 </code></pre>
 
-<div id = 'chart112445eb96b' class = 'rChart highcharts'></div>
+<div id = 'chart11243c3f530d' class = 'rChart highcharts'></div>
 
 <script type='text/javascript'>
     (function($){
         $(function () {
             var chart = new Highcharts.Chart({
- "dom": "chart112445eb96b",
+ "dom": "chart11243c3f530d",
 "width":            800,
 "height":            400,
 "credits": {
@@ -1181,9 +1181,9 @@ h1$show(&quot;inline&quot;)
 },
 "chart": {
  "zoomType": "xy",
-"renderTo": "chart112445eb96b" 
+"renderTo": "chart11243c3f530d" 
 },
-"id": "chart112445eb96b" 
+"id": "chart11243c3f530d" 
 });
         });
     })(jQuery);
@@ -1205,7 +1205,7 @@ m1 &lt;- mPlot(x = &quot;date&quot;, y = list(&quot;psavert&quot;, &quot;uempmed
 m1$set(xLabelFormat = &quot;#! function (x) { 
   return x.toString(); } 
 !#&quot;)
-m1$save(&quot;morris.html&quot;)
+m1$save(&quot;morris.html&quot;,cdn=TRUE)
 </code></pre>
 
 <iframe src="morris.html"></iframe>
@@ -1222,7 +1222,7 @@ m1$save(&quot;morris.html&quot;)
     <pre><code class="r">hair_eye = as.data.frame(HairEyeColor)
 n1 &lt;- nPlot(Freq ~ Hair, group = &#39;Eye&#39;, data = subset(hair_eye, Sex == &quot;Female&quot;), type = &#39;multiBarChart&#39;)
 n1$chart(color = c(&#39;brown&#39;, &#39;blue&#39;, &#39;#594c26&#39;, &#39;green&#39;))
-n1$save(&#39;nvd3.html&#39;)
+n1$save(&#39;nvd3.html&#39;,cdn=TRUE)
 </code></pre>
 
 <iframe src="nvd3.html"></iframe>
@@ -1238,7 +1238,7 @@ n1$save(&#39;nvd3.html&#39;)
   <article data-timings="">
     <pre><code class="r">names(iris) = gsub(&quot;\\.&quot;, &quot;&quot;, names(iris))
 p1 &lt;- rPlot(SepalLength ~ SepalWidth | Species, data = iris, color = &#39;Species&#39;, type = &#39;point&#39;)
-p1$save(&quot;polychart.html&quot;)
+p1$save(&quot;polychart.html&quot;,cdn=TRUE)
 </code></pre>
 
 <iframe src="polychart.html"></iframe>
@@ -1264,7 +1264,7 @@ r1$layer(expenditure ~ year, group = &#39;category&#39;, data = uspexp, type = &
 r1$yAxis(orientation = &#39;left&#39;)
 r1$xAxis(type = &#39;Time&#39;)
 r1$set(width = 700, height = 400)
-r1$save(&quot;rickshaw.html&quot;)
+r1$save(&quot;rickshaw.html&quot;,cdn=TRUE)
 </code></pre>
 
   </article>
@@ -1288,7 +1288,7 @@ r1$save(&quot;rickshaw.html&quot;)
   </hgroup>
   <article data-timings="">
     <pre><code class="r">u1=uPlot(x = &#39;Sex&#39;, y = &#39;Freq&#39;, data = as.data.frame(HairEyeColor), group = &#39;Hair&#39;, type = &#39;Bar&#39;)
-u1$save(&quot;uv.html&quot;)
+u1$save(&quot;uv.html&quot;,cdn=TRUE)
 </code></pre>
 
 <iframe src="uv.html"></iframe>
