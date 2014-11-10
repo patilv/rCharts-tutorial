@@ -1,0 +1,218 @@
+---
+title       : rCharts-Tutorial
+subtitle    : 
+author      : Vivek Patil
+job         : Associate Professor of Marketing
+framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
+highlighter : highlight.js  # {highlight.js, prettify, highlight}
+hitheme     : tomorrow      # 
+widgets     : [mathjax, interactive]            # {mathjax, quiz, bootstrap}
+mode        : selfcontained # {standalone, draft}
+---
+
+## rCharts
+
+* Provides the ability, from within R, to create, customize and publish interactive JavaScript (JS) visualizations
+* JS is a computer programming language that can create interactivity using web browsers
+* There are many pre-written JS libraries that make the process of creating visualizations easier. 
+* rCharts provides wrapper functions around few, but among the best, of these JS libraries to let an R user create interactive JS visualizations with little knowledge of JS. 
+
+---
+
+## JS libraries currently supported (as of 10/2014)
+
+|   |   |
+|---|---|
+| [datatables](http://www.datatables.net/)  | Interactive tables  |
+| [dimple](http://dimplejs.org/)  | d3-based - plenty of options  |
+| [highcharts](http://www.highcharts.com/)  |Free only for non-commercial purposes, plenty of options   |
+| [morris](http://morrisjs.github.io/morris.js/)  | currently - line, bar, area and donut charts  |
+| [nvd3](http://nvd3.org/)  | d3-based - plenty of options   |
+| [polychart](https://www.polychart.com/js/)  | Free for non-commercial purposes only  |
+| [rickshaw](http://code.shutterstock.com/rickshaw/)  |d3-based, time-series specialty but many others |
+| [timeline](http://timeline.knightlab.com/)  | Interactive timelines  |
+| [uvcharts](http://imaginea.github.io/uvCharts/)  | d3-based   |
+| [xcharts](http://tenxer.github.io/xcharts/)  |  Examples of line and bar charts and custom modifications of these  |
+
+* datamaps, leaflet, and crosslet are 3 others that have been wrapped up in another package called rMaps (for a different day)
+
+---
+
+## Challenge in learning
+
+* Different JS libraries developed independently - consistency in calls from within rCharts can at times be a challenge
+* Customization to specific needs may require writing JS code
+
+### Learning approach
+
+* Follow examples, questions, and issues presented in different venues
+* Stick to rCharts interface to few JS libraries which provide many choices of charts and become very familiar with them. Don't forget that few have restrictions for commercial use.
+
+---
+
+## Few Resources
+
+* [rCharts' website](http://rcharts.io/) and its [gallery of submissions from different people](http://rcharts.io/gallery/).
+* [rCharts on GitHub and the issues posted there](https://github.com/ramnathv/rCharts) and on [stackoverflow](http://stackoverflow.com/search?q=rCharts)
+* [A work-in-progress documentation](http://timelyportfolio.github.io/docs/_build/html/)
+* [rCharts-related posts from different bloggers via R-bloggers](http://www.r-bloggers.com/?s=rCharts)
+
+
+|Code examples for different libraries   |   |
+|---|---|
+| [datatables](https://github.com/ramnathv/rCharts/blob/master/inst/libraries/datatables/examples.R)  | [polychart](https://github.com/ramnathv/rCharts/blob/master/inst/libraries/polycharts/examples.R)    |
+| [dimple](https://github.com/ramnathv/rCharts/blob/master/inst/libraries/dimple/examples.R)  | [rickshaw](https://github.com/ramnathv/rCharts/blob/master/inst/libraries/rickshaw/examples.R)  |
+| [highcharts](https://github.com/ramnathv/rCharts/blob/master/inst/libraries/highcharts/examples.R)  | [timeline](https://github.com/ramnathv/rCharts/blob/master/inst/libraries/timeline/examples.R)  |
+| [morris](https://github.com/ramnathv/rCharts/blob/master/inst/libraries/morris/examples.R)  | [uvcharts](http://imaginea.github.io/uvCharts/)  |
+| [nvd3](https://github.com/ramnathv/rCharts/blob/master/inst/libraries/nvd3/examples.R)  | [xcharts](https://github.com/ramnathv/rCharts/blob/master/inst/libraries/xcharts/examples.R)   |
+
+---
+
+## Datatable
+
+```{r setup, message = F, echo = F, cache = F}
+require(rCharts)
+knitr::opts_chunk$set(results = 'asis', cache=FALSE, message=FALSE, warning=FALSE)
+```
+
+```{r}
+dt <- dTable(
+  iris,
+  sPaginationType= "full_numbers"
+)
+dt$save('datatable.html')
+```
+<iframe src="datatable.html"></iframe>
+
+---
+## Dimple - Verticle stacked & Grouped Bar Chart (the documentation and examples are most extensive)
+
+```{r}
+data <- read.delim(
+  "http://pmsi-alignalytics.github.io/dimple/data/example_data.tsv"
+)
+colnames(data) <- gsub("[.]","",colnames(data))
+d1 <- dPlot(
+  x = c("PriceTier","Channel"),
+  y = "UnitSales",
+  groups = "Owner",
+  data = data,
+  type = "bar"
+)
+d1$legend(
+  x = 200,
+  y = 10,
+  width = 400,
+  height = 20,
+  horizontalAlign = "right"
+)
+d1$save('dimple.html')
+```
+
+---
+
+## Dimple: Verticle stacked & Grouped Bar Chart (the documentation and examples are most extensive)
+
+<iframe src="dimple.html"></iframe>
+
+---
+
+## Highchart: Bubble Chart with Zoom and Export (plenty of other cool ones)
+
+```{r}
+h1 <- hPlot(Pulse ~ Height, data = MASS::survey, type = "bubble", title = "Zoom demo", subtitle = "bubble chart", size = "Age", group = "Exer")
+h1$chart(zoomType = "xy")
+h1$exporting(enabled = T)
+h1$show("inline")
+```
+
+---
+# Morris - line chart
+
+```{r}
+data(economics, package = 'ggplot2')
+dat = transform(economics, date = as.character(date))
+m1 <- mPlot(x = "date", y = list("psavert", "uempmed"), data = dat, type = 'Line',
+            pointSize = 0, lineWidth = 1)
+m1$set(xLabelFormat = "#! function (x) { 
+  return x.toString(); } 
+!#")
+m1$save("morris.html")
+```
+<iframe src="morris.html"></iframe>
+
+---
+## nvd3: Grouped/Stacked Bar Chart (plenty of cool examples - check out the line with focus)
+
+```{r}
+hair_eye = as.data.frame(HairEyeColor)
+n1 <- nPlot(Freq ~ Hair, group = 'Eye', data = subset(hair_eye, Sex == "Female"), type = 'multiBarChart')
+n1$chart(color = c('brown', 'blue', '#594c26', 'green'))
+n1$save('nvd3.html')
+```
+<iframe src="nvd3.html"></iframe>
+
+--- 
+## polycharts: facetted bar plot (also check out their heatmap)
+
+```{r}
+names(iris) = gsub("\\.", "", names(iris))
+p1 <- rPlot(SepalLength ~ SepalWidth | Species, data = iris, color = 'Species', type = 'point')
+p1$save("polychart.html")
+```
+<iframe src="polychart.html"></iframe>
+
+---
+## Rickshaw: Area chart
+
+```{r}
+uspexp <- reshape2::melt(USPersonalExpenditure)
+names(uspexp) <- c('category', 'year', 'expenditure')
+to_jsdate <- function(date_){
+  val = as.POSIXct(as.Date(date_), origin="1970-01-01")
+  as.numeric(val)
+}
+uspexp <- transform(uspexp, year = to_jsdate(as.Date(paste(year, '01', '01', sep = '-'))))
+r1 <- Rickshaw$new()
+r1$layer(expenditure ~ year, group = 'category', data = uspexp, type = 'area')
+r1$yAxis(orientation = 'left')
+r1$xAxis(type = 'Time')
+r1$set(width = 700, height = 400)
+r1$save("rickshaw.html")
+```
+
+---
+## Rickshaw: Area chart
+
+<iframe src="rickshaw.html"></iframe>
+
+---
+
+## UV Charts
+
+```{r}
+u1=uPlot(x = 'Sex', y = 'Freq', data = as.data.frame(HairEyeColor), group = 'Hair', type = 'Bar')
+u1$save("uv.html")
+```
+<iframe src="uv.html"></iframe>
+
+---
+
+## Displaying/Distributing them
+
+* `chartname$save('chartname.html')` and then use iframe 
+* `chartname$publish('chartname.html')` # need a GitHub account
+
+(See [rCharts Issue# 373 for other options](https://github.com/ramnathv/rCharts/issues/373))
+
+---
+
+## Few Resources, again
+
+* [rCharts' website](http://rcharts.io/) and its [gallery of submissions from different people](http://rcharts.io/gallery/).
+* [rCharts on GitHub and the issues posted there](https://github.com/ramnathv/rCharts) and on [stackoverflow](http://stackoverflow.com/search?q=rCharts)
+* [A work-in-progress documentation](http://timelyportfolio.github.io/docs/_build/html/)
+* [rCharts-related posts from different bloggers via R-bloggers](http://www.r-bloggers.com/?s=rCharts)
+
+* [One of my posts on different charts rCharts provides for different questions](http://patilv.com/Replication-of-few-graphs-charts-in-base-R-ggplot2-and-rCharts-part-3-rCharts/)
+

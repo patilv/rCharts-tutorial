@@ -1,0 +1,1464 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>rCharts-Tutorial</title>
+  <meta charset="utf-8">
+  <meta name="description" content="rCharts-Tutorial">
+  <meta name="author" content="Vivek Patil">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="libraries/widgets/interactive/css/aceeditor.css"></link>
+<link rel=stylesheet href="./assets/css/mycustom.css"></link>
+<link rel=stylesheet href="./assets/css/ribbons.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  <script src="libraries/widgets/highcharts/js/jquery-1.9.1.min.js"></script>
+<script src="libraries/widgets/highcharts/js/highcharts.js"></script>
+<script src="libraries/widgets/highcharts/js/highcharts-more.js"></script>
+<script src="libraries/widgets/highcharts/js/exporting.js"></script>
+
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>rCharts-Tutorial</h1>
+    <h2></h2>
+    <p>Vivek Patil<br/>Associate Professor of Marketing</p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <hgroup>
+    <h2>rCharts</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Provides the ability, from within R, to create, customize and publish interactive JavaScript (JS) visualizations</li>
+<li>JS is a computer programming language that can create interactivity using web browsers</li>
+<li>There are many pre-written JS libraries that make the process of creating visualizations easier. </li>
+<li>rCharts provides wrapper functions around few, but among the best, of these JS libraries to let an R user create interactive JS visualizations with little knowledge of JS. </li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-2" style="background:;">
+  <hgroup>
+    <h2>JS libraries currently supported (as of 10/2014)</h2>
+  </hgroup>
+  <article data-timings="">
+    <table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><a href="http://www.datatables.net/">datatables</a></td>
+<td>Interactive tables</td>
+</tr>
+<tr>
+<td><a href="http://dimplejs.org/">dimple</a></td>
+<td>d3-based - plenty of options</td>
+</tr>
+<tr>
+<td><a href="http://www.highcharts.com/">highcharts</a></td>
+<td>Free only for non-commercial purposes, plenty of options</td>
+</tr>
+<tr>
+<td><a href="http://morrisjs.github.io/morris.js/">morris</a></td>
+<td>currently - line, bar, area and donut charts</td>
+</tr>
+<tr>
+<td><a href="http://nvd3.org/">nvd3</a></td>
+<td>d3-based - plenty of options</td>
+</tr>
+<tr>
+<td><a href="https://www.polychart.com/js/">polychart</a></td>
+<td>Free for non-commercial purposes only</td>
+</tr>
+<tr>
+<td><a href="http://code.shutterstock.com/rickshaw/">rickshaw</a></td>
+<td>d3-based, time-series specialty but many others</td>
+</tr>
+<tr>
+<td><a href="http://timeline.knightlab.com/">timeline</a></td>
+<td>Interactive timelines</td>
+</tr>
+<tr>
+<td><a href="http://imaginea.github.io/uvCharts/">uvcharts</a></td>
+<td>d3-based</td>
+</tr>
+<tr>
+<td><a href="http://tenxer.github.io/xcharts/">xcharts</a></td>
+<td>Examples of line and bar charts and custom modifications of these</td>
+</tr>
+</tbody></table>
+
+<ul>
+<li>datamaps, leaflet, and crosslet are 3 others that have been wrapped up in another package called rMaps (for a different day)</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-3" style="background:;">
+  <hgroup>
+    <h2>Challenge in learning</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Different JS libraries developed independently - consistency in calls from within rCharts can at times be a challenge</li>
+<li>Customization to specific needs may require writing JS code</li>
+</ul>
+
+<h3>Learning approach</h3>
+
+<ul>
+<li>Follow examples, questions, and issues presented in different venues</li>
+<li>Stick to rCharts interface to few JS libraries which provide many choices of charts and become very familiar with them. Don&#39;t forget that few have restrictions for commercial use.</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-4" style="background:;">
+  <hgroup>
+    <h2>Few Resources</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li><a href="http://rcharts.io/">rCharts&#39; website</a> and its <a href="http://rcharts.io/gallery/">gallery of submissions from different people</a>.</li>
+<li><a href="https://github.com/ramnathv/rCharts">rCharts on GitHub and the issues posted there</a> and on <a href="http://stackoverflow.com/search?q=rCharts">stackoverflow</a></li>
+<li><a href="http://timelyportfolio.github.io/docs/_build/html/">A work-in-progress documentation</a></li>
+<li><a href="http://www.r-bloggers.com/?s=rCharts">rCharts-related posts from different bloggers via R-bloggers</a></li>
+</ul>
+
+<table><thead>
+<tr>
+<th>Code examples for different libraries</th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><a href="https://github.com/ramnathv/rCharts/blob/master/inst/libraries/datatables/examples.R">datatables</a></td>
+<td><a href="https://github.com/ramnathv/rCharts/blob/master/inst/libraries/polycharts/examples.R">polychart</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ramnathv/rCharts/blob/master/inst/libraries/dimple/examples.R">dimple</a></td>
+<td><a href="https://github.com/ramnathv/rCharts/blob/master/inst/libraries/rickshaw/examples.R">rickshaw</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ramnathv/rCharts/blob/master/inst/libraries/highcharts/examples.R">highcharts</a></td>
+<td><a href="https://github.com/ramnathv/rCharts/blob/master/inst/libraries/timeline/examples.R">timeline</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ramnathv/rCharts/blob/master/inst/libraries/morris/examples.R">morris</a></td>
+<td><a href="http://imaginea.github.io/uvCharts/">uvcharts</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ramnathv/rCharts/blob/master/inst/libraries/nvd3/examples.R">nvd3</a></td>
+<td><a href="https://github.com/ramnathv/rCharts/blob/master/inst/libraries/xcharts/examples.R">xcharts</a></td>
+</tr>
+</tbody></table>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-5" style="background:;">
+  <hgroup>
+    <h2>Datatable</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">dt &lt;- dTable(
+  iris,
+  sPaginationType= &quot;full_numbers&quot;
+)
+dt$save(&#39;datatable.html&#39;)
+</code></pre>
+
+<iframe src="datatable.html"></iframe>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-6" style="background:;">
+  <hgroup>
+    <h2>Dimple - Verticle stacked &amp; Grouped Bar Chart (the documentation and examples are most extensive)</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">data &lt;- read.delim(
+  &quot;http://pmsi-alignalytics.github.io/dimple/data/example_data.tsv&quot;
+)
+colnames(data) &lt;- gsub(&quot;[.]&quot;,&quot;&quot;,colnames(data))
+d1 &lt;- dPlot(
+  x = c(&quot;PriceTier&quot;,&quot;Channel&quot;),
+  y = &quot;UnitSales&quot;,
+  groups = &quot;Owner&quot;,
+  data = data,
+  type = &quot;bar&quot;
+)
+d1$legend(
+  x = 200,
+  y = 10,
+  width = 400,
+  height = 20,
+  horizontalAlign = &quot;right&quot;
+)
+d1$save(&#39;dimple.html&#39;)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-7" style="background:;">
+  <hgroup>
+    <h2>Dimple: Verticle stacked &amp; Grouped Bar Chart (the documentation and examples are most extensive)</h2>
+  </hgroup>
+  <article data-timings="">
+    <iframe src="dimple.html"></iframe>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-8" style="background:;">
+  <hgroup>
+    <h2>Highchart: Bubble Chart with Zoom and Export (plenty of other cool ones)</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">h1 &lt;- hPlot(Pulse ~ Height, data = MASS::survey, type = &quot;bubble&quot;, title = &quot;Zoom demo&quot;, subtitle = &quot;bubble chart&quot;, size = &quot;Age&quot;, group = &quot;Exer&quot;)
+h1$chart(zoomType = &quot;xy&quot;)
+h1$exporting(enabled = T)
+h1$show(&quot;inline&quot;)
+</code></pre>
+
+<div id = 'chart112445eb96b' class = 'rChart highcharts'></div>
+
+<script type='text/javascript'>
+    (function($){
+        $(function () {
+            var chart = new Highcharts.Chart({
+ "dom": "chart112445eb96b",
+"width":            800,
+"height":            400,
+"credits": {
+ "href": null,
+"text": null 
+},
+"exporting": {
+ "enabled": true 
+},
+"title": {
+ "text": "Zoom demo" 
+},
+"yAxis": [
+ {
+ "title": {
+ "text": "Pulse" 
+} 
+} 
+],
+"series": [
+ {
+ "data": [
+ [
+         154.94,
+71,
+        17.167 
+],
+[
+          156.2,
+80,
+          28.5 
+],
+[
+            157,
+74,
+        35.833 
+],
+[
+            157,
+74,
+            18 
+],
+[
+            157,
+89,
+        19.333 
+],
+[
+         157.48,
+68,
+         17.75 
+],
+[
+         160.02,
+80,
+          18.5 
+],
+[
+         162.56,
+60,
+        17.417 
+],
+[
+            164,
+64,
+        18.583 
+],
+[
+            164,
+64,
+        20.167 
+],
+[
+            164,
+84,
+        23.083 
+],
+[
+            165,
+48,
+        18.667 
+],
+[
+            165,
+80,
+        18.167 
+],
+[
+            165,
+92,
+            20 
+],
+[
+          165.1,
+87,
+        17.083 
+],
+[
+          166.4,
+72,
+         39.75 
+],
+[
+          166.5,
+60,
+         23.25 
+],
+[
+            167,
+70,
+        20.333 
+],
+[
+         167.64,
+40,
+        17.417 
+],
+[
+         167.64,
+70,
+        17.333 
+],
+[
+         167.64,
+72,
+        17.333 
+],
+[
+         167.64,
+90,
+        17.167 
+],
+[
+            168,
+83,
+        17.083 
+],
+[
+          168.5,
+85,
+         17.75 
+],
+[
+          169.2,
+60,
+        29.083 
+],
+[
+            170,
+64,
+        17.583 
+],
+[
+            170,
+68,
+        20.667 
+],
+[
+            170,
+70,
+        23.833 
+],
+[
+            170,
+75,
+         18.75 
+],
+[
+            170,
+104,
+         17.25 
+],
+[
+         170.18,
+75,
+        21.167 
+],
+[
+         170.18,
+80,
+            17 
+],
+[
+            172,
+68,
+        19.167 
+],
+[
+            172,
+68,
+        23.417 
+],
+[
+            172,
+73,
+          21.5 
+],
+[
+            172,
+92,
+          17.5 
+],
+[
+         172.72,
+65,
+         17.25 
+],
+[
+         172.72,
+68,
+        17.667 
+],
+[
+         172.72,
+69,
+        70.417 
+],
+[
+         172.72,
+76,
+        36.583 
+],
+[
+            173,
+62,
+        20.333 
+],
+[
+            173,
+76,
+        23.583 
+],
+[
+            174,
+48,
+        21.333 
+],
+[
+            175,
+72,
+        20.167 
+],
+[
+            175,
+76,
+        24.167 
+],
+[
+         175.26,
+62,
+        18.083 
+],
+[
+         175.26,
+66,
+            21 
+],
+[
+         175.26,
+68,
+        19.083 
+],
+[
+          176.5,
+76,
+        20.167 
+],
+[
+            177,
+76,
+         18.25 
+],
+[
+            177,
+78,
+        17.917 
+],
+[
+          177.8,
+62,
+        17.667 
+],
+[
+            178,
+70,
+          17.5 
+],
+[
+          178.5,
+66,
+        18.083 
+],
+[
+            179,
+56,
+        17.417 
+],
+[
+            179,
+60,
+        21.583 
+],
+[
+            179,
+65,
+        22.833 
+],
+[
+            180,
+59,
+        17.417 
+],
+[
+            180,
+64,
+        18.583 
+],
+[
+            180,
+78,
+          17.5 
+],
+[
+            180,
+84,
+        18.917 
+],
+[
+         180.34,
+64,
+        17.833 
+],
+[
+         180.34,
+70,
+        17.417 
+],
+[
+         180.34,
+72,
+        18.167 
+],
+[
+         180.34,
+72,
+        17.333 
+],
+[
+            182,
+65,
+            20 
+],
+[
+          182.5,
+72,
+        17.917 
+],
+[
+         182.88,
+72,
+        19.333 
+],
+[
+         182.88,
+83,
+        18.833 
+],
+[
+            184,
+100,
+        20.083 
+],
+[
+            185,
+60,
+        17.917 
+],
+[
+            185,
+68,
+        17.417 
+],
+[
+            185,
+71,
+        19.333 
+],
+[
+            185,
+88,
+        19.333 
+],
+[
+         185.42,
+60,
+        32.667 
+],
+[
+            187,
+66,
+        20.333 
+],
+[
+            187,
+84,
+        17.917 
+],
+[
+         187.96,
+64,
+            23 
+],
+[
+         187.96,
+86,
+            20 
+],
+[
+            188,
+75,
+        18.917 
+],
+[
+            190,
+66,
+            18 
+],
+[
+            190,
+68,
+          17.5 
+],
+[
+            190,
+68,
+        19.417 
+],
+[
+          190.5,
+72,
+        17.917 
+],
+[
+            195,
+76,
+          25.5 
+],
+[
+            196,
+63,
+        20.083 
+],
+[
+            200,
+55,
+          18.5 
+] 
+],
+"name": "Freq",
+"type": "bubble",
+"marker": {
+ "radius":              3 
+} 
+},
+{
+ "data": [
+ [
+         157.48,
+70,
+        17.167 
+],
+[
+            158,
+70,
+          20.5 
+],
+[
+            160,
+86,
+        20.167 
+],
+[
+            165,
+50,
+         30.75 
+],
+[
+            165,
+65,
+          18.5 
+],
+[
+            165,
+97,
+          19.5 
+],
+[
+            167,
+68,
+        18.667 
+],
+[
+            167,
+80,
+        18.417 
+],
+[
+            170,
+60,
+         17.75 
+],
+[
+            170,
+96,
+        19.417 
+],
+[
+            176,
+68,
+        18.917 
+],
+[
+          177.8,
+104,
+        17.583 
+],
+[
+         180.34,
+68,
+        43.833 
+],
+[
+          190.5,
+80,
+        18.167 
+] 
+],
+"name": "None",
+"type": "bubble",
+"marker": {
+ "radius":              3 
+} 
+},
+{
+ "data": [
+ [
+            152,
+90,
+        18.333 
+],
+[
+          152.4,
+92,
+          23.5 
+],
+[
+          153.5,
+76,
+        17.417 
+],
+[
+         154.94,
+72,
+        17.083 
+],
+[
+            155,
+66,
+          17.5 
+],
+[
+            159,
+70,
+        22.917 
+],
+[
+            160,
+74,
+        17.167 
+],
+[
+            160,
+84,
+        18.583 
+],
+[
+            160,
+88,
+        16.917 
+],
+[
+         160.02,
+65,
+         32.75 
+],
+[
+         160.02,
+72,
+         17.25 
+],
+[
+          162.5,
+79,
+         17.25 
+],
+[
+         162.56,
+70,
+            18 
+],
+[
+         162.56,
+70,
+        17.167 
+],
+[
+         162.56,
+88,
+        18.167 
+],
+[
+            163,
+79,
+        24.667 
+],
+[
+            163,
+80,
+        17.667 
+],
+[
+            163,
+83,
+         17.25 
+],
+[
+            164,
+80,
+          17.5 
+],
+[
+            165,
+35,
+        23.667 
+],
+[
+            165,
+65,
+        20.417 
+],
+[
+            165,
+70,
+        19.667 
+],
+[
+            165,
+76,
+        23.583 
+],
+[
+            165,
+76,
+          26.5 
+],
+[
+            165,
+88,
+         17.75 
+],
+[
+          165.1,
+68,
+        17.083 
+],
+[
+          165.1,
+85,
+        17.667 
+],
+[
+            167,
+61,
+         19.25 
+],
+[
+            167,
+76,
+         17.25 
+],
+[
+            167,
+79,
+         19.25 
+],
+[
+            167,
+90,
+        22.333 
+],
+[
+         167.64,
+74,
+         44.25 
+],
+[
+            168,
+60,
+        18.417 
+],
+[
+            168,
+72,
+        21.167 
+],
+[
+            168,
+81,
+          18.5 
+],
+[
+          168.9,
+68,
+        17.083 
+],
+[
+            169,
+80,
+        18.167 
+],
+[
+            170,
+70,
+        18.167 
+],
+[
+            170,
+80,
+         18.25 
+],
+[
+            170,
+80,
+        19.167 
+],
+[
+         170.18,
+78,
+        18.333 
+],
+[
+         170.18,
+80,
+        18.417 
+],
+[
+            171,
+68,
+        17.667 
+],
+[
+            171,
+100,
+        18.917 
+],
+[
+            172,
+60,
+        28.583 
+],
+[
+         172.72,
+64,
+            21 
+],
+[
+         172.72,
+90,
+          17.5 
+],
+[
+            173,
+92,
+         18.25 
+],
+[
+            175,
+72,
+            19 
+],
+[
+            175,
+84,
+          17.5 
+],
+[
+            175,
+90,
+         18.75 
+],
+[
+         175.26,
+85,
+        18.417 
+],
+[
+          176.5,
+80,
+          17.5 
+],
+[
+            178,
+60,
+         18.75 
+],
+[
+          179.1,
+80,
+        18.667 
+],
+[
+          179.1,
+92,
+        18.917 
+],
+[
+            180,
+60,
+        27.333 
+],
+[
+            180,
+70,
+        17.167 
+],
+[
+            180,
+96,
+            19 
+],
+[
+         180.34,
+67,
+         17.75 
+],
+[
+         182.88,
+74,
+        18.333 
+],
+[
+         182.88,
+80,
+        18.667 
+],
+[
+            183,
+75,
+        19.667 
+],
+[
+            183,
+90,
+        17.167 
+],
+[
+            184,
+62,
+         18.25 
+],
+[
+            185,
+75,
+            19 
+],
+[
+            185,
+80,
+          35.5 
+],
+[
+            189,
+90,
+        19.167 
+],
+[
+          191.8,
+72,
+          17.5 
+],
+[
+         193.04,
+83,
+        18.917 
+] 
+],
+"name": "Some",
+"type": "bubble",
+"marker": {
+ "radius":              3 
+} 
+} 
+],
+"xAxis": [
+ {
+ "title": {
+ "text": "Height" 
+} 
+} 
+],
+"subtitle": {
+ "text": "bubble chart" 
+},
+"chart": {
+ "zoomType": "xy",
+"renderTo": "chart112445eb96b" 
+},
+"id": "chart112445eb96b" 
+});
+        });
+    })(jQuery);
+</script>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-9" style="background:;">
+  <hgroup>
+    <h1>Morris - line chart</h1>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">data(economics, package = &#39;ggplot2&#39;)
+dat = transform(economics, date = as.character(date))
+m1 &lt;- mPlot(x = &quot;date&quot;, y = list(&quot;psavert&quot;, &quot;uempmed&quot;), data = dat, type = &#39;Line&#39;,
+            pointSize = 0, lineWidth = 1)
+m1$set(xLabelFormat = &quot;#! function (x) { 
+  return x.toString(); } 
+!#&quot;)
+m1$save(&quot;morris.html&quot;)
+</code></pre>
+
+<iframe src="morris.html"></iframe>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-10" style="background:;">
+  <hgroup>
+    <h2>nvd3: Grouped/Stacked Bar Chart (plenty of cool examples - check out the line with focus)</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">hair_eye = as.data.frame(HairEyeColor)
+n1 &lt;- nPlot(Freq ~ Hair, group = &#39;Eye&#39;, data = subset(hair_eye, Sex == &quot;Female&quot;), type = &#39;multiBarChart&#39;)
+n1$chart(color = c(&#39;brown&#39;, &#39;blue&#39;, &#39;#594c26&#39;, &#39;green&#39;))
+n1$save(&#39;nvd3.html&#39;)
+</code></pre>
+
+<iframe src="nvd3.html"></iframe>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-11" style="background:;">
+  <hgroup>
+    <h2>polycharts: facetted bar plot (also check out their heatmap)</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">names(iris) = gsub(&quot;\\.&quot;, &quot;&quot;, names(iris))
+p1 &lt;- rPlot(SepalLength ~ SepalWidth | Species, data = iris, color = &#39;Species&#39;, type = &#39;point&#39;)
+p1$save(&quot;polychart.html&quot;)
+</code></pre>
+
+<iframe src="polychart.html"></iframe>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-12" style="background:;">
+  <hgroup>
+    <h2>Rickshaw: Area chart</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">uspexp &lt;- reshape2::melt(USPersonalExpenditure)
+names(uspexp) &lt;- c(&#39;category&#39;, &#39;year&#39;, &#39;expenditure&#39;)
+to_jsdate &lt;- function(date_){
+  val = as.POSIXct(as.Date(date_), origin=&quot;1970-01-01&quot;)
+  as.numeric(val)
+}
+uspexp &lt;- transform(uspexp, year = to_jsdate(as.Date(paste(year, &#39;01&#39;, &#39;01&#39;, sep = &#39;-&#39;))))
+r1 &lt;- Rickshaw$new()
+r1$layer(expenditure ~ year, group = &#39;category&#39;, data = uspexp, type = &#39;area&#39;)
+r1$yAxis(orientation = &#39;left&#39;)
+r1$xAxis(type = &#39;Time&#39;)
+r1$set(width = 700, height = 400)
+r1$save(&quot;rickshaw.html&quot;)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-13" style="background:;">
+  <hgroup>
+    <h2>Rickshaw: Area chart</h2>
+  </hgroup>
+  <article data-timings="">
+    <iframe src="rickshaw.html"></iframe>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-14" style="background:;">
+  <hgroup>
+    <h2>UV Charts</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">u1=uPlot(x = &#39;Sex&#39;, y = &#39;Freq&#39;, data = as.data.frame(HairEyeColor), group = &#39;Hair&#39;, type = &#39;Bar&#39;)
+u1$save(&quot;uv.html&quot;)
+</code></pre>
+
+<iframe src="uv.html"></iframe>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-15" style="background:;">
+  <hgroup>
+    <h2>Displaying/Distributing them</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li><code>chartname$save(&#39;chartname.html&#39;)</code> and then use iframe </li>
+<li><code>chartname$publish(&#39;chartname.html&#39;)</code> # need a GitHub account</li>
+</ul>
+
+<p>(See <a href="https://github.com/ramnathv/rCharts/issues/373">rCharts Issue# 373 for other options</a>)</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-16" style="background:;">
+  <hgroup>
+    <h2>Few Resources, again</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li><a href="http://rcharts.io/">rCharts&#39; website</a> and its <a href="http://rcharts.io/gallery/">gallery of submissions from different people</a>.</li>
+<li><a href="https://github.com/ramnathv/rCharts">rCharts on GitHub and the issues posted there</a> and on <a href="http://stackoverflow.com/search?q=rCharts">stackoverflow</a></li>
+<li><a href="http://timelyportfolio.github.io/docs/_build/html/">A work-in-progress documentation</a></li>
+<li><p><a href="http://www.r-bloggers.com/?s=rCharts">rCharts-related posts from different bloggers via R-bloggers</a></p></li>
+<li><p><a href="http://patilv.com/Replication-of-few-graphs-charts-in-base-R-ggplot2-and-rCharts-part-3-rCharts/">One of my posts on different charts rCharts provides for different questions</a></p></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='rCharts'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='JS libraries currently supported (as of 10/2014)'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='Challenge in learning'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Few Resources'>
+         4
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=5 title='Datatable'>
+         5
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=6 title='Dimple - Verticle stacked &amp; Grouped Bar Chart (the documentation and examples are most extensive)'>
+         6
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=7 title='Dimple: Verticle stacked &amp; Grouped Bar Chart (the documentation and examples are most extensive)'>
+         7
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=8 title='Highchart: Bubble Chart with Zoom and Export (plenty of other cool ones)'>
+         8
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=9 title='Morris - line chart'>
+         9
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=10 title='nvd3: Grouped/Stacked Bar Chart (plenty of cool examples - check out the line with focus)'>
+         10
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=11 title='polycharts: facetted bar plot (also check out their heatmap)'>
+         11
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=12 title='Rickshaw: Area chart'>
+         12
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=13 title='Rickshaw: Area chart'>
+         13
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=14 title='UV Charts'>
+         14
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=15 title='Displaying/Distributing them'>
+         15
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=16 title='Few Resources, again'>
+         16
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  <script src="libraries/widgets/interactive/js/ace/js/ace.js"></script>
+<script src="libraries/widgets/interactive/js/interactive.js"></script>
+
+  <!-- MathJax: Fall back to local if CDN offline but local image fonts are not supported (saves >100MB) -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        processEscapes: true
+      }
+    });
+  </script>
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <!-- <script src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script> -->
+  <script>window.MathJax || document.write('<script type="text/x-mathjax-config">MathJax.Hub.Config({"HTML-CSS":{imageFont:null}});<\/script><script src="libraries/widgets/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"><\/script>')
+</script>
+<!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
