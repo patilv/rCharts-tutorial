@@ -216,3 +216,4 @@ u1$save("uv.html",cdn=TRUE)
 
 * [One of my posts on different charts rCharts provides for different questions](http://patilv.com/Replication-of-few-graphs-charts-in-base-R-ggplot2-and-rCharts-part-3-rCharts/)
 
+Code for this presentation can be found at: [https://github.com/patilv/rCharts-tutorial](https://github.com/patilv/rCharts-tutorial)

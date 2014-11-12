@@ -127,12 +127,12 @@ h1$show("inline")
 ```
 
 
-<div id = 'chart11243c3f530d' class = 'rChart highcharts'></div>
+<div id = 'chart1ee420044bf' class = 'rChart highcharts'></div>
 <script type='text/javascript'>
     (function($){
         $(function () {
             var chart = new Highcharts.Chart({
- "dom": "chart11243c3f530d",
+ "dom": "chart1ee420044bf",
 "width":            800,
 "height":            400,
 "credits": {
@@ -1048,9 +1048,9 @@ h1$show("inline")
 },
 "chart": {
  "zoomType": "xy",
-"renderTo": "chart11243c3f530d" 
+"renderTo": "chart1ee420044bf" 
 },
-"id": "chart11243c3f530d" 
+"id": "chart1ee420044bf" 
 });
         });
     })(jQuery);
@@ -1151,3 +1151,4 @@ u1$save("uv.html",cdn=TRUE)
 
 * [One of my posts on different charts rCharts provides for different questions](http://patilv.com/Replication-of-few-graphs-charts-in-base-R-ggplot2-and-rCharts-part-3-rCharts/)
 
+Code for this presentation can be found at: [https://github.com/patilv/rCharts-tutorial](https://github.com/patilv/rCharts-tutorial)
